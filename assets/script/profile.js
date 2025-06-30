@@ -1,44 +1,44 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const api_url = 'https://dummyjson.com'
-    const logOutEl = document.querySelector('.logOut')
-    const wrapperEl = document.querySelector('.wrapper')
+	const api_url = 'https://dummyjson.com'
+	const logOutEl = document.querySelector('.logOut')
+	const wrapperEl = document.querySelector('.wrapper')
 
-    const checkToken = function () {
-        let token = localStorage.getItem('accessToken')
+	const checkToken = function () {
+		let token = localStorage.getItem('accessToken')
 
-        if (token) {
-            fetch(`${api_url}/auth/me`, {
-                method: "GET",
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                }
-            })
-                .then(res => {
-                    if (!res.ok) throw new Error("Token is wrong")
-                    return res.json()
-                })
-                .then(data => {
-                    cardRender(data)
+		if (token) {
+			fetch(`${api_url}/auth/me`, {
+				method: "GET",
+				headers: {
+					'Authorization': `Bearer ${token}`
+				}
+			})
+				.then(res => {
+					if (!res.ok) throw new Error("Token is wrong")
+					return res.json()
+				})
+				.then(data => {
+					cardRender(data)
 
-                })
-                .catch(err => {
-                    localStorage.removeItem('accessToken')
-                    return window.location.replace("../pages/login.html")
-                })
-        } else {
-            return window.location.replace("../pages/login.html")
-        }
-    }
+				})
+				.catch(err => {
+					localStorage.removeItem('accessToken')
+					return window.location.replace("../pages/login.html")
+				})
+		} else {
+			return window.location.replace("../pages/login.html")
+		}
+	}
 
-    window.onload = () => {
-        checkToken()
-    }
+	window.onload = () => {
+		checkToken()
+	}
 
-    function cardRender(data) {
-        wrapperEl.innerHTML = null
-        const article = document.createElement('article')
-        article.className = 'w-full lg:w-4/12 px-4 mx-auto'
-        article.innerHTML = `
+	function cardRender(data) {
+		wrapperEl.innerHTML = null
+		const article = document.createElement('article')
+		article.className = 'w-full lg:w-4/12 px-4 mx-auto'
+		article.innerHTML = `
 				<div
 					class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-16"
 				>
@@ -110,11 +110,9 @@ document.addEventListener("DOMContentLoaded", () => {
 							<div class="flex flex-wrap justify-center">
 								<div class="w-full lg:w-9/12 px-4">
 									<p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-										An artist of considerable range, Jenna the name taken by
-										Melbourne-raised, Brooklyn-based Nick Murphy writes,
-										performs and records all of his own music, giving it a warm,
-										intimate feel with a solid groove structure. An artist of
-										considerable range.
+			Lorem, ipsum dolor sit amet consectetur adipisicing elit. Reiciendis,
+			iste, velit nostrum perferendis sunt, nulla modi esse explicabo fugiat
+			illo sint accusamus impedit in! Nam reprehenderit possimus est aut quae.
 									</p>
 								</div>
 							</div>
@@ -122,12 +120,12 @@ document.addEventListener("DOMContentLoaded", () => {
 					</div>
 				</div>
         `
-        wrapperEl.appendChild(article)
-    }
+		wrapperEl.appendChild(article)
+	}
 
-    logOutEl.onclick = () => {
-        localStorage.removeItem('accessToken')
-        open('../pages/login.html', '_self')
-    }
+	logOutEl.onclick = () => {
+		localStorage.removeItem('accessToken')
+		open('../pages/login.html', '_self')
+	}
 
 })

@@ -26,7 +26,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 open('../pages/profile.html', '_self')
             })
             .catch(err => {
-                console.error(err)
+                messageError.textContent = "Username or password is wrong!"
+                setTimeout(() => {
+                    messageError.textContent = null
+                }, 1500)
             })
     })
 
