@@ -7,11 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     formEl.addEventListener('submit', (e) => {
         e.preventDefault()
-
-        let obj = {
-            username: usernameEl.value,
-            password: passwordEl.value
-        }
+        const formData = new FormData(formEl)
+        const obj = new Object()
+        formData.forEach((value, key) => obj[key] = value)
+        console.log(obj)
         fetch(`${api_url}/auth/login`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -32,5 +31,4 @@ document.addEventListener("DOMContentLoaded", () => {
                 }, 1500)
             })
     })
-
 })
